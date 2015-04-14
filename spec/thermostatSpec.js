@@ -26,10 +26,17 @@ describe("Thermostat", function(){
     thermostat.temp = 10
     expect(function(){
       thermostat.down()
-    }).toThrow(Error("Too Damn Cold!"));
+    }).toThrowError("Too Damn Cold!");
   });
 
-  it('has a powersaving mode', function() {
-    expect(themostat.powerSaving).toBe(true)
+  it('is in power saving mode upon startup', function() {
+    expect(thermostat.powerSaving).toBe(true)
+  });
+
+  it("cannot increase above 25 when power saving is on", function() {
+    thermostat.temp = 25;
+    expect(function() {
+      thermostat.up;
+    }).toThrowError("You're killing the planet!")
   });
 });
