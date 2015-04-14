@@ -24,7 +24,7 @@ describe("thermostat.html", function() {
   it("has a powersaving mode controlled by a tick box", function(){
     expect($('#power_saving_mode').is(':checked')).toBe(true);
     expect(thermostat.powerSaving).toBe(true);
-    $("#power_saving_mode").prop('checked', false);
+    $("#power_saving_mode").click();
     expect(thermostat.powerSaving).toBe(false);
   });
 });
