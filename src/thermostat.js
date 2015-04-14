@@ -4,8 +4,11 @@ var Thermostat = function() {
 };
 
 Thermostat.prototype.up = function() {
-  if(this.temp === 25) {
+  if(this.powerSaving === true && this.temp === 25) {
     throw new Error("You're killing the planet!");
+  };
+  if (this.temp === 32) {
+    throw new Error("Too Damn Hot!")
   };
   this.temp++;
 };
