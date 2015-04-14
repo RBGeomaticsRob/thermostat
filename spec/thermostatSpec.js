@@ -21,4 +21,11 @@ describe("Thermostat", function(){
     thermostat.down();
     expect(thermostat.temp).toBe(18);
   });
+
+  it("cannot be set below 10 degrees", function() {
+    thermostat.temp = 10
+    expect(function(){
+      thermostat.down()
+    }).toThrowError("Too Damn Cold!")
+  });
 });
