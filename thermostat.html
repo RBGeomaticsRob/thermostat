@@ -1,6 +1,28 @@
 <!DOCTYPE HTML>
 <html>
   <body>
-    <div id="temperature">20</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src='src/thermostat.js'></script>
+    <script>
+      thermostat = new Thermostat();
+    </script>
+    <script>
+      $(document).ready(function(){
+        $('#temperature').text(thermostat.temp);
+          $('#up').click(function(){
+            thermostat.up();
+            $('#temperature').text(thermostat.temp);
+          });
+          $('#down').click(function(){
+            thermostat.down();
+            $('#temperature').text(thermostat.temp);
+          });
+      });
+    </script>
+
+    <div id="temperature">
+    </div>
+    <button id="up">&#x1F525</button>
+    <button id="down">&#x2744</button>
   </body>
 </html>
