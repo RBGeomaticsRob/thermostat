@@ -61,8 +61,8 @@ describe("Thermostat", function(){
   });
 
   it("can be reset to 20 degrees", function() {
-    thermostat.reset;
-    expect(thermostat.temp()).toEqual(20);
+    thermostat.reset();
+    expect(thermostat.temp).toEqual(20);
   });
 
 });
