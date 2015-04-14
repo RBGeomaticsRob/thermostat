@@ -53,4 +53,10 @@ describe("Thermostat", function(){
     expect(thermostat.powerSaving).toBe(false);
   });
 
+  it("should reduce temperature to 25 if above when powersaving is turned on", function() {
+      thermostat.temp = Math.floor((Math.random()*10)+25);
+      thermostat.powerSavingOn();
+      expect(thermostat.temp).toEqual(25);
+  });
+
 });
