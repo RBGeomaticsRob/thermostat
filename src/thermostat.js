@@ -4,6 +4,9 @@ var Thermostat = function() {
 };
 
 Thermostat.prototype.up = function() {
+  if(this.temp === 25) {
+    throw new Error("You're killing the planet!");
+  };
   this.temp++;
 };
 

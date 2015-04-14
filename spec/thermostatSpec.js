@@ -36,7 +36,15 @@ describe("Thermostat", function(){
   it("cannot increase above 25 when power saving is on", function() {
     thermostat.temp = 25;
     expect(function() {
-      thermostat.up;
-    }).toThrowError("You're killing the planet!")
+      thermostat.up();
+    }).toThrowError("You're killing the planet!");
+  });
+
+  it("cannot over 32 when powersaving is off", function(){
+    thermostat.powerSaving = false;
+    thermostat.temp = 32;
+    expect(function(){
+      thermostat.up();
+    }).toThrowError("Too Damn Hot!");
   });
 });
