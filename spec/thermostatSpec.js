@@ -47,4 +47,10 @@ describe("Thermostat", function(){
       thermostat.up();
     }).toThrowError("Too Damn Hot!");
   });
+
+  it("can turn power saving off", function() {
+    thermostat.powerSavingOff();
+    expect(thermostat.powerSaving).toBe(false);
+  });
+
 });
