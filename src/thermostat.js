@@ -7,5 +7,8 @@ Thermostat.prototype.up = function() {
 };
 
 Thermostat.prototype.down = function() {
+  if(this.temp === 10) {
+    throw new Error("Too Damn Cold!");
+  };
   this.temp--;
 };
