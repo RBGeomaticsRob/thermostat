@@ -10,28 +10,49 @@
       $(document).ready(function(){
         $('#temperature').text(thermostat.temp);
 
-          $('#up').click(function(){
-            thermostat.up();
-            $('#temperature').text(thermostat.temp);
-          });
+        $('#up').click(function(){
+          thermostat.up();
+          $('#temperature').text(thermostat.temp);
+          changeColor();
+          $.ajax({url: "temperature_change", method: "POST", data: "test"});
+        });
 
-          $('#down').click(function(){
-            thermostat.down();
-            $('#temperature').text(thermostat.temp);
-          });
+        $('#down').click(function(){
+          thermostat.down();
+          $('#temperature').text(thermostat.temp);
+          changeColor();
+        });
 
-          $('#power_saving_mode').change(function() {
+        $('#power_saving_mode').change(function() {
           if($('#power_saving_mode').is(":checked")) {
             thermostat.powerSavingOn();
+             $('#temperature').text(thermostat.temp);
           } else {
             thermostat.powerSavingOff();
           };
-          });
+          changeColor();
+        });
 
-          $('#reset').click(function(){
-            thermostat.reset();
-            $('#temperature').text(thermostat.temp);
-          });
+        $('#reset').click(function(){
+          thermostat.reset();
+          $('#temperature').text(thermostat.temp);
+          changeColor();;
+        });
+
+        // $('#temperature').css('color', 'green');
+
+        var changeColor = function() {
+          if ($('#temperature').text() < 18) {
+            $('#temperature').css('color', 'yellow');
+          } else if ($('#temperature').text() > 25 ) {
+            $('#temperature').css('color', 'red');
+          } else {
+            $('#temperature').css('color', 'green');
+          };
+        };
+
+        changeColor();
+
       });
     </script>
     <h1>NEsT - YOUR HOME THERMOSTAT! (OPEN FOR FUNDING)</h1>

@@ -31,6 +31,19 @@ describe("thermostat.html", function() {
     expect(thermostat.powerSaving).toBe(false);
   });
 
+  it("can reset to 25 if power saving mode turned on and above 25", function() {
+    $("#power_saving_mode").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    expect("#temperature").toContainHtml("26");
+    $("#power_saving_mode").click();
+    expect("#temperature").toContainHtml("25");
+  });
+
   it("it has a reset button which resets the thermostat to 20", function(){
     $("#up").click();
     $("#up").click();
@@ -43,12 +56,30 @@ describe("thermostat.html", function() {
   });
 
   it("changes colour based on energy usage", function(){
-    $('#temperature').text(Math.floor(Math.random()*(18 - 10 + 1))+10);
-    expect($('#temperature').css("color")).toEqual("yellow");
-    $('#temperature').text(Math.floor(Math.random()*(25 - 18 + 1))+18);
-    expect('#temperature').toHaveCss({color: "green"});
-    $('#temperature').text(Math.floor(Math.random()*(35 - 25 + 1))+25);
-    expect('#temperature').toHaveCss({color: "red"});
+    expect($('#temperature').css("color")).toEqual('rgb(0, 128, 0)');
+    $("#power_saving_mode").click();
+    $("#down").click();
+    $("#down").click();
+    expect($('#temperature').css("color")).toEqual('rgb(0, 128, 0)');
+    $("#down").click();
+    expect($('#temperature').css("color")).toEqual('rgb(255, 255, 0)');
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    expect($('#temperature').css("color")).toEqual('rgb(0, 128, 0)');
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    expect($('#temperature').css("color")).toEqual('rgb(0, 128, 0)');
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    expect($('#temperature').css("color")).toEqual('rgb(255, 0, 0)');
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    expect($('#temperature').css("color")).toEqual('rgb(255, 0, 0)');
   });
-
 });
