@@ -1,8 +1,12 @@
+beforeEach(function(){
+    jasmine.getFixtures().fixturesPath = '.';
+    loadFixtures('thermostat.html');
+  });
+
 describe("an ajax call", function() {
   it("sends a post request upon temp change", function() {
-    jasmine.Ajax.install();
+    spyOn($, 'ajax');
     $("#up").click();
-    expect(jasmine.Ajax.requests.mostRecent().url).toBe('/temperature_change');
-    jasmine.Ajax.uninstall();
+    expect($.ajax).toHaveBeenCalled();
   });
 });
