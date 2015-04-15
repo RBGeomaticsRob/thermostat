@@ -7,6 +7,13 @@
       thermostat = new Thermostat();
     </script>
     <script>
+      var sendAjax = {
+            asPost: function() {
+              $.ajax({url: "temperature_change", method: "POST", data: "test"}, function(data){
+                return data;
+              });
+            }
+          };
       $(document).ready(function(){
         $('#temperature').text(thermostat.temp);
 
@@ -14,7 +21,7 @@
           thermostat.up();
           $('#temperature').text(thermostat.temp);
           changeColor();
-          $.ajax({url: "temperature_change", method: "POST", data: "test"});
+          sendAjax.asPost();
         });
 
         $('#down').click(function(){
