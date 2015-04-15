@@ -5,11 +5,6 @@ describe("an ajax call", function() {
     loadFixtures('thermostat.html');
   });
 
-      var configuration = {
-        url : "Car",
-        remainingCallTime : 30000
-    };
-
   it("sends a post request upon temp change", function() {
 
     jasmine.Ajax.install();
