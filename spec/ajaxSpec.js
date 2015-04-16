@@ -1,47 +1,46 @@
-describe("an ajax call", function() {
-
-  beforeEach(function(){
+beforeEach(function(){
     jasmine.getFixtures().fixturesPath = '.';
     loadFixtures('thermostat.html');
   });
 
-  it("sends a post request upon temp change", function() {
-
-    jasmine.Ajax.install();
-      spyOn($, 'ajax');
-      $("#up").click();
-      // console.log($.ajax.calls.mostRecent())
-      expect($.ajax.calls.mostRecent().args[0]["url"]).toEqual("temperature_change");
-    jasmine.Ajax.uninstall();
-
-
-
-    // jasmine.Ajax.install();
-    // var spyEvent = jasmine.createSpy("success")
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function(args) {
-    //   if (this.readyState == this.DONE) {
-    //     spyEvent(this.responseText);
-    //   }
-    // };
-
-    // xhr.open("POST","/temperature_change");
-    // xhr.send();
-
-    // expect(jasmine.Ajax.requests.mostRecent().url).toBe('/temperature_change');
-    // expect(spyEvent).not.toHaveBeenCalled();
-
-    // jasmine.Ajax.stubRequest('/temperature_change').andReturn({
-    //   "responseText": 'some response text'
-    // })
-
-    // xhr.open("POST","/temperature_change");
-    // xhr.send();
-
-    // expect(spyEvent).toHaveBeenCalledWith('some response text');
-    // jasmine.Ajax.uninstall();
-
+describe("an ajax call", function() {
+  it("sends a post request with temperature upon pressing up", function() {
+    spyOn($, 'ajax');
+    $("#up").click();
+    expect($.ajax.calls.mostRecent().args[0]['url']).toEqual("temperature_change");
+     expect($.ajax.calls.mostRecent().args[0]['data']).toEqual(thermostat.temp);
+  });
+  it("sends a post request with temperature upon pressing down", function() {
+    spyOn($, 'ajax');
+    $("#down").click();
+    expect($.ajax.calls.mostRecent().args[0]['url']).toEqual("temperature_change");
+     expect($.ajax.calls.mostRecent().args[0]['data']).toEqual(thermostat.temp);
+  });
+  it("sends a post request with temperature upon pressing reset", function() {
+    spyOn($, 'ajax');
+    $("#reset").click();
+    expect($.ajax.calls.mostRecent().args[0]['url']).toEqual("temperature_change");
+     expect($.ajax.calls.mostRecent().args[0]['data']).toEqual(thermostat.temp);
+  });
+  it("sends a post request with temperature upon pressing reset if temp is above 25", function() {
+    spyOn($, 'ajax');
+    $("#power_saving_mode").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $("#up").click();
+    $.ajax.calls.reset();
+    $("#power_saving_mode").click();
+    expect($.ajax.calls.mostRecent().args[0]['url']).toEqual("temperature_change");
+     expect($.ajax.calls.mostRecent().args[0]['data']).toEqual(thermostat.temp);
   });
 
-
+  it("does not send a post request when turning power saving on and below 25", function() {
+    spyOn($, 'ajax');
+    $("#power_saving_mode").click();
+    $.ajax.calls.reset();
+    $("#power_saving_mode").click();
+    expect($.ajax).not.toHaveBeenCalled();
+  });
 });

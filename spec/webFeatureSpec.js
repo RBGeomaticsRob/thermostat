@@ -7,7 +7,7 @@ describe("thermostat.html", function() {
     spyOn($, 'ajax');
   });
 
-  beforeEach(function(){
+  afterEach(function(){
     jasmine.Ajax.uninstall();
   });
 
