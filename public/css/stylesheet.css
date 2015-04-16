@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+}
+
+#temperature {
+  font-size: 10em;
+}
+
+.thermostat {
+  background-color: blue;
+  border-radius: 50%;
+  height: 30em;
+  width: 30em;
+  margin: auto;
+  border: 3em solid yellow;
+}

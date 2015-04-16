@@ -3,12 +3,7 @@ describe("thermostat.html", function() {
   beforeEach(function(){
     jasmine.getFixtures().fixturesPath = '.';
     loadFixtures('thermostat.html');
-    jasmine.Ajax.install();
     spyOn($, 'ajax');
-  });
-
-  afterEach(function(){
-    jasmine.Ajax.uninstall();
   });
 
   it("displays the temperature", function() {

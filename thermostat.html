@@ -1,18 +1,27 @@
 <!DOCTYPE HTML>
 <html>
-  <body>
+  <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src='src/thermostat.js'></script>
     <script src='public/javascript/application.js'></script>
+    <link rel="stylesheet" href="/public/css/stylesheet.css">
+  </head>
 
-    <h1>NEsT - YOUR HOME THERMOSTAT! (OPEN FOR FUNDING)</h1>
-    <div id="temperature">
+  <body>
+    <div class="thermostat">
+      <h1>TEMPO</h1>
+      <div id="temperature">
+      </div>
+
+
+      <button id="up">&#x1F525</button>
+      <button id="down">&#x2744</button>
+      <button id="reset">Reset</button>
+
+      <div class="psaving">
+        POWER SAVING MODE:
+        <input type="checkbox" id="power_saving_mode" checked>
+      </div>
     </div>
-    <button id="up">&#x1F525</button>
-    <button id="down">&#x2744</button><br>
-    <button id="reset">Reset</button><br>
-    POWER SAVING MODE:
-    <input type="checkbox" id="power_saving_mode" checked>
-    <div id='result'></div>
   </body>
 </html>
