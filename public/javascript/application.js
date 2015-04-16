@@ -2,6 +2,23 @@ thermostat = new Thermostat();
 
 $(document).ready(function(){
 
+        $('#London').click(function(){
+          var weatherAjax = $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/weather",
+            data: {
+              q:"London",
+              units:"metric",
+              APPID:"d511992ca81fc06e08f2dfeff6e9bf93"
+            }
+            // success: function(data){
+            //   $('#weatherapidata').text(data.main.temp)
+            // }
+          });
+          weatherAjax.done(function(data){
+            $('#weatherapidata').text(data.main.temp)
+          });
+        });
+
         $('#temperature').text(thermostat.temp);
 
         $('#up').click(function(){
