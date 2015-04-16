@@ -3,65 +3,8 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src='src/thermostat.js'></script>
-    <script>
-      thermostat = new Thermostat();
-    </script>
-    <script>
-      var sendAjax = {
-            asPost: function() {
-              $.ajax({url: "temperature_change", method: "POST", data: "test"}, function(data){
-                return data;
-              });
-            }
-          };
-      $(document).ready(function(){
-        $('#temperature').text(thermostat.temp);
+    <script src='public/javascript/application.js'></script>
 
-        $('#up').click(function(){
-          thermostat.up();
-          $('#temperature').text(thermostat.temp);
-          changeColor();
-          sendAjax.asPost();
-        });
-
-        $('#down').click(function(){
-          thermostat.down();
-          $('#temperature').text(thermostat.temp);
-          changeColor();
-        });
-
-        $('#power_saving_mode').change(function() {
-          if($('#power_saving_mode').is(":checked")) {
-            thermostat.powerSavingOn();
-             $('#temperature').text(thermostat.temp);
-          } else {
-            thermostat.powerSavingOff();
-          };
-          changeColor();
-        });
-
-        $('#reset').click(function(){
-          thermostat.reset();
-          $('#temperature').text(thermostat.temp);
-          changeColor();;
-        });
-
-        // $('#temperature').css('color', 'green');
-
-        var changeColor = function() {
-          if ($('#temperature').text() < 18) {
-            $('#temperature').css('color', 'yellow');
-          } else if ($('#temperature').text() > 25 ) {
-            $('#temperature').css('color', 'red');
-          } else {
-            $('#temperature').css('color', 'green');
-          };
-        };
-
-        changeColor();
-
-      });
-    </script>
     <h1>NEsT - YOUR HOME THERMOSTAT! (OPEN FOR FUNDING)</h1>
     <div id="temperature">
     </div>
@@ -70,5 +13,6 @@
     <button id="reset">Reset</button><br>
     POWER SAVING MODE:
     <input type="checkbox" id="power_saving_mode" checked>
+    <div id='result'></div>
   </body>
 </html>
