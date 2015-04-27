@@ -1,13 +1,21 @@
 thermostat = new Thermostat();
 
+var TestResponses = {
+  search: {
+    success: {
+      status: 200,
+      responseText: '{"main": {"temp": 12.09}}'
+    }
+  }
+};
+
 function loaddata(data) {
 $("#weatherapidata").text(data.main.temp);
 };
 
 $(document).ready(function(){
 
-  $('#London').click(function(e){
-    e.preventDefault();
+  $('#London').click(function(){
     $.ajax({
       url: "http://api.openweathermap.org/data/2.5/weather",
       data: {

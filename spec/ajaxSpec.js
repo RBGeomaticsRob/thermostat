@@ -45,13 +45,11 @@ describe("an ajax call", function() {
   });
 
   it("can send a GET request for weather data", function(){
-    jasmine.Ajax.install();
-    var weatherobject = {"main": {"temp": 12.09}}
-    jasmine.Ajax.stubRequest('http://api.openweathermap.org/data/2.5/weather').andReturn({
-      success: loaddata(weatherobject)
-    });
+    spyOn($, 'ajax');
+    var weatherobject = {"main" : {"temp" : 12.09}}
     $("#London").click();
+    $.ajax.calls.mostRecent().args[0].success(weatherobject);
     expect("#weatherapidata").toContainHtml("12.09")
-    jasmine.Ajax.uninstall();
   });
+
 });
