@@ -9,9 +9,24 @@ var TestResponses = {
   }
 };
 
+
+
+// Problem: To test that clicking on the "London" button displays
+//          the current temp in London, by requesting data from a
+//          third party api using an ajax call, but not having the
+//          call be made during when testing.
+
+
+
+
+
+
+
 function loaddata(data) {
 $("#weatherapidata").text(data.main.temp);
 };
+
+
 
 $(document).ready(function(){
 
@@ -24,10 +39,22 @@ $(document).ready(function(){
         APPID:"d511992ca81fc06e08f2dfeff6e9bf93"
       },
       success: function(data){
+        console.log(data)
         loaddata(data);
       }
     });
   });
+
+
+
+
+
+
+
+
+
+
+
 
   $('#temperature').text(thermostat.temp);
 

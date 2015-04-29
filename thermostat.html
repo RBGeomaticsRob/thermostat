@@ -25,5 +25,24 @@
         <input type="checkbox" id="power_saving_mode" checked>
       </div>
     </div>
+<!--     <script>
+      document.getElementById("London").addEventListener( "click", function(){
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = function() {
+          if(xhr.status === 200) {
+            responseObject = JSON.parse(xhr.responseText);
+
+            var temp = responseObject.main.temp;
+
+            document.getElementById('weatherapidata').innerHTML = temp;
+          };
+        };
+
+        xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q=London&units=metric');
+        xhr.send(null);
+      });
+    </script> -->
   </body>
 </html>
